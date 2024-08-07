@@ -1,0 +1,27 @@
+services:
+
+  edc1:
+    container_name: "edc1"
+    image: ghcr.io/possible-x/connector:4342b0f57fa5344b8f5545f6951d0b920c6251df
+    env_file: "secrets/edc_ionos_secrets.txt"
+    volumes:
+      - ./initial_data/edc/edc1.properties:/app/dataspaceconnector-configuration.properties:ro
+    entrypoint: >
+      /bin/sh -c '
+      touch /app/vault.properties;
+      java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar
+      '
+    network_mode: "host"
+
+  edc2:
+    container_name: "edc2"
+    image: ghcr.io/possible-x/connector:4342b0f57fa5344b8f5545f6951d0b920c6251df
+    env_file: "secrets/edc_ionos_secrets.txt"
+    volumes:
+      - ./initial_data/edc/edc2.properties:/app/dataspaceconnector-configuration.properties:ro
+    entrypoint: >
+      /bin/sh -c '
+      touch /app/vault.properties;
+      java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
+      '
+    network_mode: "host"
