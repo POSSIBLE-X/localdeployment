@@ -25,3 +25,10 @@ services:
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
       '
     network_mode: "host"
+
+  sd-creation-wizard-api:
+    user: "${UID}:${GID}"
+    container_name: "sd-creation-wizard-api"
+    image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest
+    ports:
+      - "8085:8080"
