@@ -2,7 +2,7 @@ services:
 
   consumer-edc:
     container_name: "consumer-edc"
-    image: ghcr.io/possible-x/connector:372324af8c3e58df3deeab3035c6e630749843c3
+    image: ghcr.io/possible-x/connector:latest-develop
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/consumer.properties:/app/dataspaceconnector-configuration.properties:ro
@@ -16,7 +16,7 @@ services:
 
   provider-edc:
     container_name: "provider-edc"
-    image: ghcr.io/possible-x/connector:372324af8c3e58df3deeab3035c6e630749843c3
+    image: ghcr.io/possible-x/connector:latest-develop
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/provider.properties:/app/dataspaceconnector-configuration.properties:ro
@@ -31,7 +31,7 @@ services:
   omejdn-server:
     user: "${UID}:${GID}"
     container_name: "omejdn-server"
-    image: ghcr.io/possible-x/omejdn:98363a163b23a465844c35b4444814d0cf9af2ef
+    image: ghcr.io/possible-x/omejdn:0.1.1
     environment:
       OMEJDN_ISSUER: "http://localhost:4567"
       OMEJDN_FRONT_URL: "http://localhost:4567"
@@ -55,3 +55,10 @@ services:
       '
     network_mode: "host"
     restart: on-failure
+
+  sd-creation-wizard-api:
+    user: "${UID}:${GID}"
+    container_name: "sd-creation-wizard-api"
+    image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest
+    ports:
+      - "8085:8080"
