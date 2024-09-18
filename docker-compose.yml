@@ -2,28 +2,28 @@ services:
 
   consumer-edc:
     container_name: "consumer-edc"
-    image: ghcr.io/possible-x/connector:latest-develop
+    image: ghcr.io/possible-x/connector:372324af8c3e58df3deeab3035c6e630749843c3
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/consumer.properties:/app/dataspaceconnector-configuration.properties:ro
-      - ./initial_data/edc/provider.pfx:/opt/edc.pfx:ro
+      - ./initial_data/edc/consumer.pfx:/opt/edc.pfx:ro
     entrypoint: >
       /bin/sh -c '
-      touch /app/vault.properties;
+      touch /opt/vault.properties;
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar
       '
     network_mode: "host"
 
   provider-edc:
     container_name: "provider-edc"
-    image: ghcr.io/possible-x/connector:latest-develop
+    image: ghcr.io/possible-x/connector:372324af8c3e58df3deeab3035c6e630749843c3
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/provider.properties:/app/dataspaceconnector-configuration.properties:ro
       - ./initial_data/edc/provider.pfx:/opt/edc.pfx:ro
     entrypoint: >
       /bin/sh -c '
-      touch /app/vault.properties;
+      touch /opt/vault.properties;
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
       '
     network_mode: "host"
@@ -31,7 +31,7 @@ services:
   omejdn-server:
     user: "${UID}:${GID}"
     container_name: "omejdn-server"
-    image: ghcr.io/merlot-education/omejdn-plugins:0.0.1-70cb288
+    image: ghcr.io/possible-x/omejdn:98363a163b23a465844c35b4444814d0cf9af2ef
     environment:
       OMEJDN_ISSUER: "http://localhost:4567"
       OMEJDN_FRONT_URL: "http://localhost:4567"
