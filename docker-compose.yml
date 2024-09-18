@@ -6,9 +6,10 @@ services:
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/consumer.properties:/app/dataspaceconnector-configuration.properties:ro
+      - ./initial_data/edc/consumer.pfx:/opt/edc.pfx:ro
     entrypoint: >
       /bin/sh -c '
-      touch /app/vault.properties;
+      touch /opt/vault.properties;
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar
       '
     network_mode: "host"
@@ -19,12 +20,41 @@ services:
     env_file: "secrets/edc_ionos_secrets.txt"
     volumes:
       - ./initial_data/edc/provider.properties:/app/dataspaceconnector-configuration.properties:ro
+      - ./initial_data/edc/provider.pfx:/opt/edc.pfx:ro
     entrypoint: >
       /bin/sh -c '
-      touch /app/vault.properties;
+      touch /opt/vault.properties;
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
       '
     network_mode: "host"
+  
+  omejdn-server:
+    user: "${UID}:${GID}"
+    container_name: "omejdn-server"
+    image: ghcr.io/possible-x/omejdn:0.1.1
+    environment:
+      OMEJDN_ISSUER: "http://localhost:4567"
+      OMEJDN_FRONT_URL: "http://localhost:4567"
+      OMEJDN_OPENID: true
+      OMEJDN_ENVIRONMENT: "development"
+      OMEJDN_ACCEPT_AUDIENCE: idsc:IDS_CONNECTORS_ALL
+      OMEJDN_DEFAULT_AUDIENCE: idsc:IDS_CONNECTORS_ALL
+      OMEJDN_PLUGINS: plugins_config/plugins.yml
+    volumes:
+      - ./docker_data/omejdn/config:/opt/config
+      - ./initial_data/omejdn/plugins_config/plugins.yml:/opt/plugins_config/plugins.yml:ro
+      - ./docker_data/omejdn/keys:/opt/keys
+      - ./initial_data/omejdn/config/:/opt/initial_config/:ro
+      - ./initial_data/omejdn/keys/:/opt/initial_keys:ro
+    entrypoint: >
+      /bin/bash -c '
+      cp -n /opt/initial_config/initial_clients.yml /opt/config/clients.yml;
+      cp -rf /opt/initial_config/scope_mapping.yml /opt/config/scope_mapping.yml;
+      cp -r -n /opt/initial_keys/* /opt/keys/;
+      ruby omejdn.rb
+      '
+    network_mode: "host"
+    restart: on-failure
 
   sd-creation-wizard-api:
     user: "${UID}:${GID}"
