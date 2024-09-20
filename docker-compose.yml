@@ -59,6 +59,6 @@ services:
   sd-creation-wizard-api:
     user: "${UID}:${GID}"
     container_name: "sd-creation-wizard-api"
-    image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest
+    image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest-develop
     ports:
       - "8085:8080"
