@@ -62,3 +62,49 @@ services:
     image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest-develop
     ports:
       - "8085:8080"
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: on-failure
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
+    volumes:
+      - ./initial_data/pgadmin/servers.json:/pgadmin4/servers.json:ro
+    entrypoint: >
+      /bin/sh -c '
+      echo "postgres:5432:*:postgres:postgres" > /tmp/pgpass;
+      chmod 600 /tmp/pgpass;
+      /entrypoint.sh
+      '
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  
+  postgres:
+    user: "${UID}:${GID}"
+    container_name: "postgres_possible"
+    hostname: postgres
+    image: postgres:16
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 30s
+      timeout: 5s
+      retries: 50
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker_data/postgres/data:/var/lib/postgresql/data
+      - ./initial_data/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
