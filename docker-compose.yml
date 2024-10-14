@@ -107,7 +107,9 @@ services:
       - "5432:5432"
     volumes:
       - ./docker_data/postgres/data:/var/lib/postgresql/data
-      - ./initial_data/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./initial_data/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./initial_data/postgres/init-edc-consumer-db.sql:/docker-entrypoint-initdb.d/02-init-edc-consumer-db.sql:ro
+      - ./initial_data/postgres/init-edc-provider-db.sql:/docker-entrypoint-initdb.d/03-init-edc-provider-db.sql:ro
 
   did-web-service:
     user: "${UID}:${GID}"
