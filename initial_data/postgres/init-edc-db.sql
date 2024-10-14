@@ -1,5 +1,3 @@
-\c edcconsumer
-
 -- Statements are designed for and tested with Postgres only!
 
 CREATE TABLE IF NOT EXISTS edc_lease

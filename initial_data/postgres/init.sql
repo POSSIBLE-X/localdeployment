@@ -9,3 +9,9 @@ GRANT ALL PRIVILEGES ON DATABASE possibleportal TO postgres;
 
 CREATE DATABASE didwebservice;
 GRANT ALL PRIVILEGES ON DATABASE didwebservice TO postgres;
+
+\c edcconsumer
+\i /opt/init-edc-db.sql
+
+\c edcprovider
+\i /opt/init-edc-db.sql
