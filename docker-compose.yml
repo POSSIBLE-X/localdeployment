@@ -108,3 +108,25 @@ services:
     volumes:
       - ./docker_data/postgres/data:/var/lib/postgresql/data
       - ./initial_data/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  did--web-service:
+    user: "${UID}:${GID}"
+    container_name: "did-web-service"
+    image: ghcr.io/possible-x/did-web-service:latest
+    environment:
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+      SPRING_JPA_DATABASEPLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/didwebservice
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    network_mode: "host"
+    healthcheck:
+      test: wget --no-check-certificate https://localhost:4443/health || exit 1
+      interval: 30s
+      timeout: 30s
+      retries: 50
+      start_period: 3s
+    depends_on:
+      postgres:
+        condition: service_healthy
+  
