@@ -109,7 +109,7 @@ services:
       - ./docker_data/postgres/data:/var/lib/postgresql/data
       - ./initial_data/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 
-  did--web-service:
+  did-web-service:
     user: "${UID}:${GID}"
     container_name: "did-web-service"
     image: ghcr.io/possible-x/did-web-service:latest
