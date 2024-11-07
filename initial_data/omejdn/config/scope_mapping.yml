@@ -5,3 +5,4 @@ idsc:IDS_CONNECTOR_ATTRIBUTES_ALL:
 - "@type"
 - "@context"
 - transportCertsSha256
+- did
