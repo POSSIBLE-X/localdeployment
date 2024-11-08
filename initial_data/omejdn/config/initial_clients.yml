@@ -30,6 +30,8 @@
     value: https://w3id.org/idsa/contexts/context.jsonld
   - key: transportCertsSha256
     value: b5c4cbece799557d1f62c5aa5c134eb13143346281d3de2b7a7cdef05f768666
+  - key: did
+    value: did:web:consumer
 - client_id: 59:0B:DD:26:41:AC:57:D7:ED:76:D5:84:F8:BC:AC:8E:4C:C7:56:70:keyid:59:0B:DD:26:41:AC:57:D7:ED:76:D5:84:F8:BC:AC:8E:4C:C7:56:70
   client_name: edc2
   grant_types: client_credentials
@@ -48,3 +50,5 @@
     value: https://w3id.org/idsa/contexts/context.jsonld
   - key: transportCertsSha256
     value: 6b438fe58f606efd1ba40cf3bf57af807b08a011dd15946c861c038b44bce0f2
+  - key: did
+    value: did:web:provider
