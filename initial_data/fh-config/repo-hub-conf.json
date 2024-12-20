@@ -1,0 +1,49 @@
+{
+  "PIVEAU_HUB_SEARCH_SERVICE": {
+    "enabled": true,
+    "url": "piveau-hub-search",
+    "port": 8080,
+    "api_key": "yourSearchApiKey"
+  },
+  "PIVEAU_HUB_SHELL_CONFIG": {
+    "http": {},
+    "telnet": {}
+  },
+  "PIVEAU_TRIPLESTORE_CONFIG": {
+    "address": "http://virtuoso:8890",
+    "clearGeoDataCatalogues": [
+      "*"
+    ],
+    "graphEndpoint": "/sparql-graph-crud",
+    "graphAuthEndpoint": "/sparql-graph-crud-auth",
+    "queryEndpoint": "/sparql",
+    "queryAuthEndpoint": "/sparql-auth",
+    "username": "dba",
+    "password": "dba",
+    "transferFormat": "application/n-triples"
+  },
+  "PIVEAU_FEATURE_FLAGS": {
+    "piveau_profile": true,
+    "piveau_trust": true
+  },
+  "PIVEAU_PROFILE": {
+    "type": "directory",
+    "path": "/usr/verticles/conf/shapes"
+  },
+  "PIVEAU_HUB_VALIDATOR": {
+    "enabled": true,
+    "metricsPipeName": "metrics",
+    "history": false
+  },
+  "PIVEAU_TRUST_CONFIG": {
+    "did": "did:web:didwebservice.dev.possible-x.de",
+    "verificationMethod": "did:web:didwebservice.dev.possible-x.deJWK2020-PossibleLetsEncrypt",
+    "address": "http://localhost:8080",
+    "pathVCCore": "/trust/core",
+    "pathVCServiceOffering": "/trust/service-offering",
+    "pathVCDataResource": "/trust/data-resource",
+    "pathDID": "/trust/did",
+    "addressSignService": "http://piveau-hub-normalization:8080",
+    "key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDz3DdKnFgEDpUY\nLCGZFFsc3kqz6Db9Tv08Frdb4/4KUaUO1c/adhTPSY8H6F9cBh3JV4XRQqzOEHJT\nl/Xiu0OOnndSD9qi23F0vTc1D0ErUplgUhUdVrxs4bQrMuvwVR0SyviTj/PGa5wU\n6pN3wwBnLADH0RtkVUAIhjTfHjvlWnQG4eePmTCNIxA3JMutevpi/jKRaRPKXAFC\nND89zsPvdo3ySzRcMG4RkeEeU+Gq4RxJZDnABRf9HM3HNSwfg+GHuSYKGE4eUS0T\npm7CgflS/FljQiZTmmHM2n6dTWNroOlVVMOFzyU5JmZP+sn2d4chTwhEDpAqr+s6\nkvW5xrw1AgMBAAECggEAbclp9yQ2F/V8uDo+Eg3xCykk1qQoBZjHN4M+n5cgawLg\n3bHy9vaMXdpPE49RRzvVsyy9KT3sUIVlAy952s7WFmJPc9mBZCqJhLYfIbsxatCw\nDoZFzUScZiSjGYO+Zx/ai/hnOv/nDyCpT11gcN2Q0+Iio9MHkv8yaeQJ751L9/AF\nKTtYRZ0tHuNpK7NkBcjc7bcZNBqhP6mwBydFTj/ziKi1UUvd3USI/tbaeCLplT6j\nJIiefIXCG8VzQF/dOfVAuEYTySDMtXFAcMBodw9uBE+gUBPlkvGKojWjqKzFMgdw\nV6qBvckymAjyCwKK9UmMk+x7fCUNko17yg/NQggDoQKBgQD8mybBVOrMe/FyB9gD\npbDB/Ic3Wa6ZVkDUWapyobDSmMfYWhFFOSgzC0+ncXYw3fEyCkFDWN4FKxqjFgaM\niEfjVyXk6dEn3idA6GNZbl76x6OaOEngBogW8wMB8/D6+DpWVQLK9rvd/L/suVdZ\n+BapysOMapltiCWasY0oXrpUfQKBgQD3Ivug8PY51FUPlel2w81JHWZXK1/iTMsj\nLvII4YSdE2uP6Z5w9krsrCVbHVPQm3HMflIlJpJEIgkdzx1yiQbaKQ3whQhyH97E\nixzTpvajr7ITFK/PwWenyXvzeYqEGsGPuHrpanYFrKBG73jT1egkGXY5Cy2KD+pr\n0W57N3ssGQKBgA9SPcSGKQOkFN3sud5mw1TQw0bJKrzkLWRz19HCGt57I8vskpWX\nROfrrLYkPJ30KDf3xUOXdUfs+F2h7V3CulGArKy4vdXkNI9MSRJYjmw5haPJ/DkZ\nTFHQBYOtzxT5z1gDKfszgeuR8/Ygu7qaQI2l3bx7jrjFBDrgwAYN0NFlAoGAPYXk\n9IToFy9n2ZBtZVaLNWdvQcYXgaOycljOgi16MQxTm6kB+4ck0dRtHEipw+Xep5TO\n6Fa41ONQN66G2yuHnCnaQYUsvBR5BZ7IF1yaS9eCUkO1HNg98MQ06kDYndh3VUsM\ntiz9op397IrTHpFC0DHSf5LrzFH3/s1NXrlKHYkCgYEA6s63wgiKTg6JlP9oqpZ/\ncvc/9weSVtaTv2zkTLT9UnwWDmliYGgwWHPF1KLsKCYyWoufygviPSw4qjkgM9Lf\nGi0pic9rVCWXePQf/vL1I/BRyjICBgx2Z9MpKNAmOMezGCYRMexXO72d8kHHm74P\n42uZUCTbdOHz17yrKi+ELuo=\n-----END PRIVATE KEY-----"
+  }
+}
