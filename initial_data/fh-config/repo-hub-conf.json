@@ -37,7 +37,7 @@
   },
   "PIVEAU_TRUST_CONFIG": {
     "did": "did:web:didwebservice.dev.possible-x.de",
-    "verificationMethod": "did:web:didwebservice.dev.possible-x.deJWK2020-PossibleLetsEncrypt",
+    "verificationMethod": "did:web:didwebservice.dev.possible-x.de#JWK2020-PossibleLetsEncrypt",
     "address": "http://localhost:8080",
     "pathVCCore": "/trust/core",
     "pathVCServiceOffering": "/trust/service-offering",
