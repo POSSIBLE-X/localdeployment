@@ -39,6 +39,11 @@ Pull Piveau images (private access tokens are needed, see secrets_example)
 > docker --config ./secrets/search-docker-config pull dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-search:latest
 ```
 
+Initialize Piveau with example participants
+```
+> ./init_catalog.sh
+```
+
 If you want to debug a specific service (e.g. by running it locally on the host system), you start docker compose up with all the services listed except the specific service to debug.
 For example if you wanted to leave out the edc2, you would use 
 ```

@@ -1,6 +1,6 @@
 #!/bin/bash
 curl --location --request PUT 'http://localhost:5081/trust/legal-participant?verificationMethod=did%3Aweb%3Adidwebservice.dev.possible-x.de%3Aparticipant%3Aa8d62eee-3a16-3a05-adc1-88404998d781%23JWK2020-PossibleLetsEncrypt' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib3BlcmF0b3IiXX19.' \
+--header 'Authorization: Bearer yourRepoApiKey' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": "did:web:didwebservice.dev.possible-x.de:participant:a8d62eee-3a16-3a05-adc1-88404998d781",
@@ -33,7 +33,7 @@ curl --location --request PUT 'http://localhost:5081/trust/legal-participant?ver
 }'
 
 curl --location --request PUT 'http://localhost:5081/trust/legal-participant?verificationMethod=did%3Aweb%3Adidwebservice.dev.possible-x.de%3Aparticipant%3A901e847f-bded-32d5-8301-c0e2dfa8439f%23JWK2020-PossibleLetsEncrypt' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib3BlcmF0b3IiXX19.' \
+--header 'Authorization: Bearer yourRepoApiKey' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "id": "did:web:didwebservice.dev.possible-x.de:participant:901e847f-bded-32d5-8301-c0e2dfa8439f",
