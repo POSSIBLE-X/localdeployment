@@ -22,16 +22,16 @@ Create needed docker folder structure:
 > ./recreate_docker_data.sh
 ```
 
-Force re-pull images (e.g. when an update is not automatically picked up by docker)
-```
-> docker compose pull
-```
-
 Pull Piveau images (private access tokens are needed, see secrets_example)
 ```
 > docker --config ./secrets/repo-docker-config pull dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-repo:latest
 > docker --config ./secrets/normalization-docker-config pull dockerhub.fokus.fraunhofer.de:5000/possible/normalization-urdna2015:latest
 > docker --config ./secrets/search-docker-config pull dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-search:latest
+```
+
+Force re-pull images (e.g. when an update is not automatically picked up by docker)
+```
+> docker compose pull
 ```
 
 Start the whole stack:
