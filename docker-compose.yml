@@ -13,6 +13,9 @@ services:
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar
       '
     network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   provider-edc:
     container_name: "provider-edc"
@@ -27,6 +30,9 @@ services:
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
       '
     network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
   
   omejdn-server:
     user: "${UID}:${GID}"
@@ -57,7 +63,6 @@ services:
     restart: on-failure
 
   sd-creation-wizard-api:
-    user: "${UID}:${GID}"
     container_name: "sd-creation-wizard-api"
     image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest-develop
     ports:
@@ -111,7 +116,6 @@ services:
       - ./initial_data/postgres/init-edc-db.sql:/opt/init-edc-db.sql:ro
 
   did-web-service:
-    user: "${UID}:${GID}"
     container_name: "did-web-service"
     image: ghcr.io/possible-x/did-web-service:latest
     environment:
@@ -135,6 +139,7 @@ services:
     image: dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-repo:latest
     container_name: piveau-hub-repo
     hostname: piveau-hub-repo
+    user: "${UID}:${GID}"
     logging:
       options:
         max-size: "50m"
@@ -149,6 +154,7 @@ services:
     volumes:
       - ./initial_data/fh-config/repo-hub-conf.json:/usr/verticles/conf/config.json:ro
       - ./initial_data/fh-config/shapes:/usr/verticles/conf/shapes:ro
+      - ./docker_data/piveau-hub-repo/trust:/usr/verticles/trust
 
   piveau-hub-search:
     image: dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-search:latest
@@ -200,6 +206,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.16
     container_name: elasticsearch
     hostname: elasticsearch
+    user: "${UID}:${GID}"
     logging:
       options:
         max-size: "50m"
@@ -227,6 +234,7 @@ services:
     image: openlink/virtuoso-opensource-7:7.2.9
     container_name: virtuoso
     hostname: virtuoso
+    user: "${UID}:${GID}"
     logging:
       options:
         max-size: "50m"
