@@ -9,6 +9,10 @@
     "http": {},
     "telnet": {}
   },
+  "PIVEAU_DCATAP_SCHEMA_CONFIG": {
+    "baseUri": "http://localhost:5081/",
+    "resource": "resources/"
+  },
   "PIVEAU_TRIPLESTORE_CONFIG": {
     "address": "http://virtuoso:8890",
     "clearGeoDataCatalogues": [
@@ -38,7 +42,7 @@
   "PIVEAU_TRUST_CONFIG": {
     "did": "did:web:didwebservice.dev.possible-x.de",
     "verificationMethod": "did:web:didwebservice.dev.possible-x.de#JWK2020-PossibleLetsEncrypt",
-    "address": "http://localhost:8080",
+    "address": "http://localhost:5081",
     "pathVCCore": "/trust/core",
     "pathVCServiceOffering": "/trust/service-offering",
     "pathVCDataResource": "/trust/data-resource",

@@ -2,9 +2,9 @@ import i18n from './i18n';
 
 const glueConfig = {
   api: {
-    baseUrl: 'http://localhost:8084/',
+    baseUrl: 'http://localhost:5082/',
     // baseUrl: 'https://possible.fokus.fraunhofer.de/api/hub/search/',
-    hubUrl: 'https://localhost:8081/',
+    hubUrl: 'https://localhost:5081/',
     // hubUrl: 'https://possible.fokus.fraunhofer.de/api/hub/repo/',
  
     qualityBaseUrl: 'https://piveau-metrics-cache-piveau.apps.osc.fokus.fraunhofer.de/',

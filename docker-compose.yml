@@ -139,8 +139,8 @@ services:
       options:
         max-size: "50m"
     ports:
-      - 8081:8080
-      - 8055:8085   # http shell
+      - 5081:8080
+      - 5085:8085   # http shell
       #- 5002:5000  # telnet
     environment:
       - PIVEAU_HUB_API_KEY=yourRepoApiKey
@@ -158,8 +158,8 @@ services:
       options:
         max-size: "50m"
     ports:
-      - 8084:8080
-      - 8086:8081
+      - 5082:8080
+      - 5086:8081
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -179,11 +179,11 @@ services:
       options:
         max-size: "50m"
     ports:
-      - 8080:8080
+      - 5080:8080
     environment:
       - VITE_METADATA_TITLE=Local Possible Catalog
-      - VITE_API_BASE_URL=http://localhost:8084/
-      - VITE_API_HUB_URL=http://localhost:8081/
+      - VITE_API_BASE_URL=http://localhost:5082/
+      - VITE_API_HUB_URL=http://localhost:5081/
     volumes:
       - ./initial_data/fh-config/user-config.js:/app/apps/vanilla-piveau-hub-ui/config/user-config.js:ro
       - ./initial_data/fh-config/en.json:/app/apps/vanilla-piveau-hub-ui/config/i18n/lang/en.json:ro

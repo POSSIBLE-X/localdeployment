@@ -27,6 +27,18 @@ Trigger a rebuild (e.g. when you change the code)
 > docker compose up --build --force-recreate
 ```
 
+Force re-pull images (e.g. when an update is not automatically picked up by docker)
+```
+> docker compose pull
+```
+
+Pull Piveau images (private access tokens are needed, see secrets_example)
+```
+> docker --config ./secrets/repo-docker-config pull dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-repo:latest
+> docker --config ./secrets/normalization-docker-config pull dockerhub.fokus.fraunhofer.de:5000/possible/normalization-urdna2015:latest
+> docker --config ./secrets/search-docker-config pull dockerhub.fokus.fraunhofer.de:5000/piveau/hub/piveau-hub-search:latest
+```
+
 If you want to debug a specific service (e.g. by running it locally on the host system), you start docker compose up with all the services listed except the specific service to debug.
 For example if you wanted to leave out the edc2, you would use 
 ```
