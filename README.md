@@ -26,11 +26,6 @@ Create needed docker folder structure:
 > ./recreate_docker_data.sh
 ```
 
-Pull Piveau images (private access tokens are needed, see secrets_example)
-```
-> ./update_catalog_docker.sh
-```
-
 Force re-pull images (e.g. when an update is not automatically picked up by docker)
 ```
 > docker compose pull
@@ -44,6 +39,16 @@ Start the whole stack:
 Trigger a rebuild (e.g. when you change the code)
 ```
 > docker compose up --build --force-recreate
+```
+
+Pull Piveau images (private access tokens are needed, see secrets_example)
+```
+> ./update_catalog_docker.sh
+```
+
+Start Piveau stack
+```
+> docker compose -f ./docker-compose-catalog.yml uo
 ```
 
 Initialize Piveau with example participants
