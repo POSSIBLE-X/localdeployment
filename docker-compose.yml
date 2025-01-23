@@ -13,6 +13,9 @@ services:
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar
       '
     network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   provider-edc:
     container_name: "provider-edc"
@@ -27,6 +30,9 @@ services:
       java -Dedc.fs.config=/app/dataspaceconnector-configuration.properties -jar /app/connector.jar 
       '
     network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
   
   omejdn-server:
     user: "${UID}:${GID}"
@@ -57,7 +63,6 @@ services:
     restart: on-failure
 
   sd-creation-wizard-api:
-    user: "${UID}:${GID}"
     container_name: "sd-creation-wizard-api"
     image: ghcr.io/possible-x/catalog-shapes/sd-creation-wizard-api:latest-develop
     ports:
@@ -111,7 +116,6 @@ services:
       - ./initial_data/postgres/init-edc-db.sql:/opt/init-edc-db.sql:ro
 
   did-web-service:
-    user: "${UID}:${GID}"
     container_name: "did-web-service"
     image: ghcr.io/possible-x/did-web-service:latest
     environment:
@@ -130,4 +134,3 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-  
