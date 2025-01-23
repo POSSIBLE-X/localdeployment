@@ -33,7 +33,7 @@ Force re-pull images (e.g. when an update is not automatically picked up by dock
 
 Start the whole stack:
 ```
-> docker compose up
+> docker compose up -d
 ```
 
 Trigger a rebuild (e.g. when you change the code)
@@ -48,7 +48,7 @@ Pull Piveau images (private access tokens are needed, see secrets_example)
 
 Start Piveau stack
 ```
-> docker compose -f ./docker-compose-catalog.yml uo
+> docker compose -f ./docker-compose-catalog.yml up -d
 ```
 
 Initialize Piveau with example participants
