@@ -1,9 +1,0 @@
-{
-	"auths": {
-		"dockerhub.fokus.fraunhofer.de:5000": {
-            "username": "REPLACEME",
-            "password": "REPLACEME",
-            "auth": "REPLACEME"
-        }
-	}
-}
