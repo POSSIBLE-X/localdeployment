@@ -179,7 +179,7 @@ services:
       - ./initial_data/fh-config/shapes:/usr/verticles/conf/shapes:ro
 
   piveau-hub-ui:
-    image: docker pull ghcr.io/possible-x/piveau-mirror/piveau-hub-ui:2025-02-03
+    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-ui:2025-02-03
     container_name: piveau-hub-ui
     hostname: piveau-hub-ui
     logging:
