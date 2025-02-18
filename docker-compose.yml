@@ -149,7 +149,6 @@ services:
       - 5085:8085   # http shell
       #- 5002:5000  # telnet
     environment:
-      - PIVEAU_HUB_API_KEY=yourRepoApiKey
       - PIVEAU_LOG_LEVEL=DEBUG
       - JAVA_OPTS=-Xms1g -Xmx2g
     volumes:
@@ -171,7 +170,6 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
-      - PIVEAU_HUB_SEARCH_API_KEY=yourSearchApiKey
       - PIVEAU_LOG_LEVEL=DEBUG
       - JAVA_OPTS=-Xms1g -Xmx2g
     volumes:

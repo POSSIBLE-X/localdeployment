@@ -1,9 +1,13 @@
 {
+  "PIVEAU_HUB_API_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wbGVAZXhhbXBsZS5jb20ifQ.lIFGx3dAAwI3ck57PFUo2PdEUG7qGWFMPLu6-J_EaHM",
+  "PIVEAU_HUB_AUTHORIZATION_PROCESS_DATA": {
+    "customSecret": "6766413234d69154dea495899262867045b0247aeb7767c76e9889d6efd043c7"
+  },
   "PIVEAU_HUB_SEARCH_SERVICE": {
     "enabled": true,
     "url": "piveau-hub-search",
     "port": 8080,
-    "api_key": "yourSearchApiKey"
+    "api_key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wbGVAZXhhbXBsZS5jb20ifQ.lIFGx3dAAwI3ck57PFUo2PdEUG7qGWFMPLu6-J_EaHM"
   },
   "PIVEAU_HUB_SHELL_CONFIG": {
     "http": {},
