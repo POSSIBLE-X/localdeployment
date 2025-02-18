@@ -1,3 +1,17 @@
+#  Copyright 2024-2025 Dataport. All rights reserved. Developed as part of the POSSIBLE project.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
 services:
 
   consumer-edc:
@@ -137,7 +151,7 @@ services:
 
   # ============== piveau ==============
   piveau-hub-repo:
-    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-repo:2025-02-03
+    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-repo:2025-02-17
     container_name: piveau-hub-repo
     hostname: piveau-hub-repo
     user: "${UID}:${GID}"
@@ -157,7 +171,7 @@ services:
       - ./docker_data/piveau-hub-repo/trust:/usr/verticles/trust
 
   piveau-hub-search:
-    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-search:2025-02-03
+    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-search:2025-02-17
     container_name: piveau-hub-search
     hostname: piveau-hub-search
     logging:
@@ -177,7 +191,7 @@ services:
       - ./initial_data/fh-config/shapes:/usr/verticles/conf/shapes:ro
 
   piveau-hub-ui:
-    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-ui:2025-02-03
+    image: ghcr.io/possible-x/piveau-mirror/piveau-hub-ui:2025-02-17
     container_name: piveau-hub-ui
     hostname: piveau-hub-ui
     logging:
@@ -194,7 +208,7 @@ services:
       - ./initial_data/fh-config/en.json:/app/apps/vanilla-piveau-hub-ui/config/i18n/lang/en.json:ro
 
   piveau-hub-normalization:
-    image: ghcr.io/possible-x/piveau-mirror/normalization-urdna2015:2025-02-03
+    image: ghcr.io/possible-x/piveau-mirror/normalization-urdna2015:2025-02-17
     container_name: piveau-hub-normalization
     hostname: piveau-hub-normalization
     ports:
