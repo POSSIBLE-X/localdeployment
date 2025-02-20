@@ -1,7 +1,7 @@
 # Local Deployment of the POSSIBLE Project
 
 This repo contains a docker stack to deploy the services in the POSSIBLE project on a local development system.
-
+To fully run the stack, it is expected that the [POSSIBLE-X Portal](https://github.com/POSSIBLE-X/possible-x-portal) as well as the [POSSIBLE-X Participant Portal](https://github.com/POSSIBLE-X/possible-x-participant-portal) are checked out in a folder "next to" the localdeployment folder, i.e. they can be referenced e.g. by `../possible-x-portal` and `../possible-x-participant-portal` respectively.
 
 ## Usage
 

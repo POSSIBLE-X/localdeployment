@@ -51,7 +51,7 @@ services:
   omejdn-server:
     user: "${UID}:${GID}"
     container_name: "omejdn-server"
-    image: ghcr.io/possible-x/omejdn:0.1.1
+    image: ghcr.io/possible-x/omejdn:latest-develop
     environment:
       OMEJDN_ISSUER: "http://localhost:4567"
       OMEJDN_FRONT_URL: "http://localhost:4567"
@@ -145,6 +145,88 @@ services:
       timeout: 30s
       retries: 50
       start_period: 3s
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ============== POSSIBLE-X Portal ==============
+    
+  possible-x-portal-frontend:
+    container_name: "possible-x-portal-frontend"
+    build:
+      context: ../possible-x-portal/frontend
+      dockerfile: Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+      args:
+        - ACTIVEPROFILE=local
+    ports:
+      - "4208:8080"
+
+  possible-x-portal-backend:
+    container_name: "possible-x-portal-backend"
+    build:
+      context: ../possible-x-portal
+      dockerfile: backend/Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+    network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ============== POSSIBLE-X Participant Portal (Consumer/Provider) ==============
+
+  possible-x-participant-portal-consumer-frontend:
+    container_name: "possible-x-participant-portal-consumer-frontend"
+    build:
+      context: ../possible-x-participant-portal/frontend
+      dockerfile: Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+      args:
+        - ACTIVEPROFILE=consumer-local
+    ports:
+      - "4201:8080"
+
+  possible-x-participant-portal-consumer-backend:
+    container_name: "possible-x-participant-portal-consumer-backend"
+    build:
+      context: ../possible-x-participant-portal
+      dockerfile: backend/Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+    environment:
+      - SPRING_PROFILES_ACTIVE=consumer-local
+    network_mode: "host"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  possible-x-participant-portal-provider-frontend:
+    container_name: "possible-x-participant-portal-provider-frontend"
+    build:
+      context: ../possible-x-participant-portal/frontend
+      dockerfile: Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+      args:
+        - ACTIVEPROFILE=provider-local
+    ports:
+      - "4200:8080"
+
+  possible-x-participant-portal-provider-backend:
+    container_name: "possible-x-participant-portal-provider-backend"
+    build:
+      context: ../possible-x-participant-portal
+      dockerfile: backend/Dockerfile
+      secrets:
+        - "GIT_AUTH_TOKEN"
+    environment:
+      - SPRING_PROFILES_ACTIVE=provider-local
+    network_mode: "host"
     depends_on:
       postgres:
         condition: service_healthy
@@ -263,3 +345,7 @@ services:
       - VIRT_HTTPSERVER_MAXCLIENTCONNECTIONS=100
     volumes:
       - ./docker_data/virtuoso:/database
+
+secrets:
+  GIT_AUTH_TOKEN:
+    file: "secrets/git_auth_token.txt"
